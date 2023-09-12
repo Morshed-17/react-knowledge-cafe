@@ -6,6 +6,10 @@ import Header from "./components/Header/Header";
 
 function App() {
   const [bookMarks,  setBookMarks] = useState([])
+  const [readingTime, setReadingTime] = useState(0)
+  const handleMarkAsRead = (time) => {
+    setReadingTime(readingTime+ time)
+  }
 
   const handleBookMarks = (blog) => {
     const isExists = bookMarks.find(item => item.id === blog.id)
@@ -22,8 +26,8 @@ function App() {
     <div className="max-w-screen-xl mx-auto">
       <Header></Header>
       <div className="md:flex gap-4">
-        <Blogs handleBookMarks={handleBookMarks}></Blogs>
-        <Bookmarks bookMarks={bookMarks}></Bookmarks>
+        <Blogs handleBookMarks={handleBookMarks} handleMarkAsRead={handleMarkAsRead}></Blogs>
+        <Bookmarks bookMarks={bookMarks} readingTime={readingTime}></Bookmarks>
       </div>
     </div>
   );
